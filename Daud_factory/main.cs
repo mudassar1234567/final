@@ -106,7 +106,7 @@ namespace Daud_factory
                 {
                     expendituredb cdb = new expendituredb();
                     cdb.get(i);
-                    chart1.Series["customers"].Points.AddXY(cdb.name, cdb.amount);
+                    chart1.Series["Expenditures"].Points.AddXY(cdb.name, cdb.amount);
                 }
             }
 

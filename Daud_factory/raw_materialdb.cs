@@ -16,7 +16,8 @@ namespace Daud_factory
         public SqlDataAdapter da;
         public DataTable dt;
         public string name, purchased_from, purchase_date;
-        public string quantity, cost;
+        public string  cost;
+        public double quantity;
 
         public raw_materialdb()
         {
@@ -55,13 +56,13 @@ namespace Daud_factory
             da.Fill(dt);
             id = Int32.Parse(dt.Rows[0]["ID"].ToString());
             name = dt.Rows[0]["Name"].ToString();
-            quantity = (dt.Rows[0]["quantity"].ToString());
+            quantity = float.Parse(dt.Rows[0]["quantity"].ToString());
             cost = (dt.Rows[0]["cost"].ToString());
             purchased_from = dt.Rows[0]["purchased_from"].ToString();
             purchase_date = dt.Rows[0]["purchase_date"].ToString();
             return this;
-
         }
+
         public void update(int id, string name, int quantity, int weight)
         {
             cmd.Connection = con;

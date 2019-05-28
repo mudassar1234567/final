@@ -88,7 +88,7 @@
             this.chart1.Name = "chart1";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
-            series2.Name = "customers";
+            series2.Name = "Expenditures";
             this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(558, 435);
             this.chart1.TabIndex = 16;

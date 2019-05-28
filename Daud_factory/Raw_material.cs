@@ -13,8 +13,13 @@ namespace Daud_factory
 {
     public partial class Rawmaterial : Form
     {
+        public SqlDataAdapter da;
+        public DataTable dt;
+
         public Rawmaterial()
         {
+            da = new SqlDataAdapter();
+            dt = new DataTable();
             InitializeComponent();
         }
 
@@ -29,16 +34,99 @@ namespace Daud_factory
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "INSERT INTO raw_material (name, quantity, cost, purchased_from, purchase_date) values ('" + comboBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + dateTimePicker1.Text + "')";
-            cmd.ExecuteNonQuery();
             raw_materialdb edb = new raw_materialdb();
-            dataGridView1.DataSource = edb.selectall();
-            con.Close();
-            comboBox1.Text = "";
-            textBox2.Text = "";
-            textBox3.Text = "";
-            textBox4.Text = "";
-            //textBox5.Text = "";
+            double x,y;
+            y = float.Parse(textBox2.Text);
+            if (comboBox1.Text== "Resin")
+            {
+                edb.get(1);
+                x = edb.quantity + y;
+                cmd.CommandText = "update raw_material set quantity='" + x + "', cost='" + textBox3.Text + "', purchased_from='" + textBox4.Text + "', purchase_date='" + dateTimePicker1.Text + "' where name='" + comboBox1.Text + "'";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                this.Close();
+                Rawmaterial f13 = new Rawmaterial();
+                f13.ShowDialog();
+            }
+            else if (comboBox1.Text == "UVtax")
+            {
+                edb.get(2);
+                x = edb.quantity + y;
+                cmd.CommandText = "update raw_material set quantity='" + x + "', cost='" + textBox3.Text + "', purchased_from='" + textBox4.Text + "', purchase_date='" + dateTimePicker1.Text + "' where name='" + comboBox1.Text + "'";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                this.Close();
+                Rawmaterial f13 = new Rawmaterial();
+                f13.ShowDialog();
+            }
+            else if (comboBox1.Text == "One pack")
+            {
+                edb.get(4);
+                x = edb.quantity + y;
+                cmd.CommandText = "update raw_material set quantity='" + x + "', cost='" + textBox3.Text + "', purchased_from='" + textBox4.Text + "', purchase_date='" + dateTimePicker1.Text + "' where name='" + comboBox1.Text + "'";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                this.Close();
+                Rawmaterial f13 = new Rawmaterial();
+                f13.ShowDialog();
+            }
+            else if (comboBox1.Text == "Titanium")
+            {
+                edb.get(5);
+                x = edb.quantity + y;
+                cmd.CommandText = "update raw_material set quantity='" + x + "', cost='" + textBox3.Text + "', purchased_from='" + textBox4.Text + "', purchase_date='" + dateTimePicker1.Text + "' where name='" + comboBox1.Text + "'";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                this.Close();
+                Rawmaterial f13 = new Rawmaterial();
+                f13.ShowDialog();
+            }
+            else if (comboBox1.Text == "DOP")
+            {
+                edb.get(6);
+                x = edb.quantity + y;
+                cmd.CommandText = "update raw_material set quantity='" + x + "', cost='" + textBox3.Text + "', purchased_from='" + textBox4.Text + "', purchase_date='" + dateTimePicker1.Text + "' where name='" + comboBox1.Text + "'";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                this.Close();
+                Rawmaterial f13 = new Rawmaterial();
+                f13.ShowDialog();
+            }
+            else if (comboBox1.Text == "Chowk powder")
+            {
+                edb.get(7);
+                x = edb.quantity + y;
+                cmd.CommandText = "update raw_material set quantity='" + x + "', cost='" + textBox3.Text + "', purchased_from='" + textBox4.Text + "', purchase_date='" + dateTimePicker1.Text + "' where name='" + comboBox1.Text + "'";
+                cmd.ExecuteNonQuery();
+                con.Close();
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                this.Close();
+                Rawmaterial f13 = new Rawmaterial();
+                f13.ShowDialog();
+            }
         }
 
         private void Rawmaterial_Load(object sender, EventArgs e)
@@ -73,7 +161,7 @@ namespace Daud_factory
             raw_materialdb idb = new raw_materialdb();
             idb.get(Int32.Parse(id));
             comboBox1.Text = idb.name;
-            textBox2.Text = idb.quantity;
+            textBox2.Text = idb.quantity+"";
             textBox3.Text = idb.cost;
             textBox4.Text = idb.purchased_from;
             dateTimePicker1.Text = idb.purchase_date;
@@ -104,7 +192,7 @@ namespace Daud_factory
             con.Open();
             SqlCommand cmd = con.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "delete from raw_material where name='" + comboBox1.Text + "'";
+            cmd.CommandText = "update raw_material set  quantity='" + 0 + "' where name='" + comboBox1.Text + "'";
             cmd.ExecuteNonQuery();
             raw_materialdb rdb = new raw_materialdb();
             //edb.delete(textBox1.Text);

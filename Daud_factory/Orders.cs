@@ -80,6 +80,7 @@ namespace Daud_factory
                 cmd.CommandType = CommandType.Text;
                 cmd.CommandText = "INSERT INTO sales (product,quantity, area, date) values ('" + comboBox2.Text + "','" + textBox5.Text + "','" + comboBox3.Text + "','" + dateTimePicker1.Text + "')";
                 cmd.ExecuteNonQuery();
+
                 salesdb sdb = new salesdb();
             }
             comboBox2.Text = "";

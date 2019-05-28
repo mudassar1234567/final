@@ -12,7 +12,7 @@ namespace Daud_factory
     {
         int id;
         public string name;
-        int quantity;
+        public int quantity;
         public SqlConnection con;
         public SqlCommand cmd;
         public SqlDataAdapter da;
@@ -50,21 +50,25 @@ namespace Daud_factory
             return dt;
         }
 
+       
+
         public productsdb get(int id)
         {
             da = new SqlDataAdapter("Select * from Products where product_id=" + id, con);
             da.Fill(dt);
             id = Int32.Parse(dt.Rows[0]["product_id"].ToString());
-            name = dt.Rows[0]["Name"].ToString();
-            quantity = Int32.Parse(dt.Rows[0]["unit_price"].ToString());
+            name = dt.Rows[0]["name"].ToString();
+            quantity = Int32.Parse(dt.Rows[0]["Ready"].ToString());
             return this;
         }
+
         public void update(int id, string name, int quantity, int weight)
         {
             cmd.Connection = con;
             cmd.CommandText = "UPDATE products SET name =" + name + ", quantity=" + quantity + ",weight=" + weight + "WHERE id=" + id;
             da.Fill(dt);
         }
+
         public void delete(int id)
         {
             cmd.Connection = con;
